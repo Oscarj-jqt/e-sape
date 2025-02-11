@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 
 users_bp = Blueprint('users', __name__)
 
+
 # Liste des utilisateurs fictifs
 users = [{"id": 1, "username": "admin", "password": "123"}]
 
