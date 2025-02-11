@@ -6,3 +6,6 @@ Authentification JWT
 
 login 1 interface générer le token
  1 interface vérifier le token
+
+activer environnement virtuel
+.\.venv\Scripts\activate
