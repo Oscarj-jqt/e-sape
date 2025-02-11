@@ -1,10 +1,17 @@
 import React from "react";
+import "./Nav.css";
 
 const Nav = () => {
     return (
-        <div>
-            <p>Hello World</p>
-        </div>
+        <header>
+            <h1>Issape</h1>
+            <nav>
+                <a href="#">Panier</a>
+                <a href="#">Catalogue</a>
+                <a href="#">Login</a>
+                <input type="text" placeholder="Issape" />
+            </nav>
+        </header>
     )
 }
 
