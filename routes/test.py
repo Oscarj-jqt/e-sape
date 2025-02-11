@@ -11,10 +11,7 @@ app.config['JWT_SECRET_KEY'] = 'web2'
 jwt = JWTManager(app)
 
 
-# Liste des users
-users = [
-    {"id": 1, "username": "admin", "password": "123"}
-]
+
 
 @app.route('/')
 def home():
