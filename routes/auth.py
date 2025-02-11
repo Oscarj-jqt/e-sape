@@ -1,10 +1,16 @@
 from flask import Blueprint, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import create_access_token
 
 auth_bp = Blueprint('auth', __name__)
 
 # Liste des utilisateurs fictifs
 users = [{"id": 1, "username": "admin", "password": "123"}]
+
+
+@auth_bp.route('/login')
+def login():
+   return render_template('login.html')
 
 # Route de login pour générer un token JWT
 @auth_bp.route('/login', methods=["POST"])
