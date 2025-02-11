@@ -14,7 +14,7 @@ def signup():
 
 
 # Route pour ajouter un utilisateur (Signup)
-@users_bp.route('/signup', methods=['POST'])
+@users_bp.route('/adduser', methods=['POST'])
 def adduser():
     # Récupérer les données du formulaire
     # firstname = request.form['firstname']
