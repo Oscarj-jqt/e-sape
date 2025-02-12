@@ -1,0 +1,20 @@
+Site e-commerce
+
+
+Fonctionnalités
+Authentification JWT
+
+login 1 interface générer le token
+ 1 interface vérifier le token
+
+activer environnement virtuel
+.\.venv\Scripts\activate
+
+1- Système d'Authentification avec JWT
+-méthode post /login
+-vérification des données
+-expiration du token (1 heure)
+
+2- API GraphQL
+-
+
