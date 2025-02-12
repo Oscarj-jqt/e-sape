@@ -1,12 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import create_access_token
+import bcrypt
 
 auth_bp = Blueprint('auth', __name__)
 
-# Liste des utilisateurs fictifs
-users = [{"id": 1, "username": "admin", "password": "123"}]
+hashed_password = bcrypt.hashpw("123".encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
+# Liste des utilisateurs fictifs
+users = [{"id": 1, "username": "admin", "password": hashed_password}]
 
 @auth_bp.route('/login')
 def login():
