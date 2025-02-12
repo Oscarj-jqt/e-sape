@@ -28,5 +28,6 @@ activer environnement virtuel
 
 2- API GraphQL (choix)
 -avec l'Auth (get : 1 interface ou 2)
+- comparer avec REST
 
 
