@@ -1,12 +1,13 @@
 import {React} from "react";
 import Nav from "./components/Nav";
-import Home from "./components/home";
+import Home from "./components/Home";
+import Login from "./components/Login";
 import "./index.css"
 const App = () => {
     return (
         <div>
             <Nav />
-            <Home />
+            <Login />
         </div>
     )
 }
