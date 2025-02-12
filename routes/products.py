@@ -62,7 +62,11 @@ def modify_product():
 @jwt_required()
 def delete_product():
     current_user = get_jwt_identity()  
+<<<<<<< HEAD
     if current_user != 'admin': 
+=======
+    if current_user != 'admin':  # Vérifier si l'utilisateur est admin
+>>>>>>> 746ce55fdf485f1351caa09a1f5715d5cf153552
         return jsonify({"msg": "Access forbidden: admin only"}), 403
 
     data = request.get_json()

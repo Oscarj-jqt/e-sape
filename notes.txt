@@ -1,0 +1,33 @@
+E-sape
+
+Technologies :
+
+Flask / rest
+React PWA permet de transformer en tout type d’application
+Mongodb ou sql
+
+Fonctionnalités :
+
+Enregistrement nouveau user
+Systeme login logout
+Ajout élément au panier
+Possibilité d’aller dans la page détail du produit
+Page admin permettant d’ajouter des produits
+Possibilité de chercher un produit dans la barre de recherche (mettre en place une recherche intelligente / moteur de recherche semantique)
+
+login 1 interface générer le token
+ 1 interface vérifier le token
+
+activer environnement virtuel
+.\.venv\Scripts\activate
+
+1- Système d'Authentification avec JWT
+-méthode post /login
+-vérification des données
+-expiration du token (1 heure)
+
+2- API GraphQL (choix)
+-avec l'Auth (get : 1 interface ou 2)
+- comparer avec REST
+
+
