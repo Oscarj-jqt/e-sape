@@ -1,11 +1,10 @@
-from flask import Blueprint, request, jsonify
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, Blueprint, render_template, request, jsonify
 
 users_bp = Blueprint('users', __name__)
 
 
 # Liste des utilisateurs fictifs
-users = [{"id": 1, "username": "admin", "password": "123"}]
+users = [{"id": 1, "username": "admin", "password": "123456"}]
 
 
 @users_bp.route('/signup')
@@ -16,20 +15,19 @@ def signup():
 # Route pour ajouter un utilisateur (Signup)
 @users_bp.route('/adduser', methods=['POST'])
 def adduser():
-    # Récupérer les données du formulaire
-    # firstname = request.form['firstname']
-    # name = request.form['name']
+
     username = request.form['username']
     password = request.form['password']
-    # email = request.form['email']
 
-    # Vérifier si le nom d'utilisateur existe déjà
     for user in users:
         if user['username'] == username:
-            return jsonify({"msg": "Username already exists"}), 400
+            return "Ce nom d'utilisateur existe déjà, prennez un autre", 400
+        
+    if len(password) < 6:
+        return "Le mot de passe doit être d'au moins 6 caractères", 400    
     
     # Ajouter l'utilisateur à la liste
     new_user = {"id": len(users) + 1,"username": username, "password": password}
     users.append(new_user)
 
-    return jsonify({"msg": "User registered successfully"}), 201
+    return "User registered successfully" , 201

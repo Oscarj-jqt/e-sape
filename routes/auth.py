@@ -10,7 +10,7 @@ auth_bp = Blueprint('auth', __name__)
 logging.basicConfig(level=logging.INFO)
 
 # Liste des utilisateurs fictifs avec mot de passe en clair
-users = [{"id": 1, "username": "admin", "password": "123"}]
+users = [{"id": 1, "username": "admin", "password": "123456"}]
 
 @auth_bp.route('/login')
 def login():
