@@ -2,10 +2,11 @@ form{
     height: 420px;
     width: 400px;
     background-color: #28272F;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
+    position: relative; 
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 60px auto; 
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -61,3 +62,16 @@ label{
     border-radius: 5px;
     cursor: pointer;
 }
+
+.register {
+    height: 520px;
+    width: 400px;
+    background-color: #28272F;
+    position: relative; 
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 60px auto; 
+    margin-top: 100px;
+}
+

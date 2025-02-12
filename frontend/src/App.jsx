@@ -2,12 +2,17 @@ import {React} from "react";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Register from "./components/Register";
+import Footer from "./components/Footer";
 import "./index.css"
 const App = () => {
     return (
-        <div>
+        <div className="app-container">
             <Nav />
-            <Login />
+            <main>
+                <Home />
+            </main>
+            <Footer/>
         </div>
     )
 }
