@@ -12,7 +12,7 @@ from database.graph import schema
 
 app = Flask(__name__)
 
-# API GraphQL pour tout gérer en 1 route au lieu du REST
+# API GraphQL pour tout gérer en 1 route au lieu de REST
 app.add_url_rule("/graphql", view_func=GraphQLView.as_view(
    "graphql",
    schema=schema,
@@ -20,7 +20,7 @@ app.add_url_rule("/graphql", view_func=GraphQLView.as_view(
 ))
 
 # Configuration de la clé JWT
-app.config['JWT_SECRET_KEY'] = 'e-sape'
+app.config['JWT_SECRET_KEY'] = 'web2'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)  
 jwt = JWTManager(app)
 
