@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .logo {
+    margin: 0;
+    font-size: 2rem;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin: 0 15px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .nav-links a:hover {
+    color: #f5a623;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: rgb(92, 83, 83);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 8px 8px 12px gray;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+  
+  .shop-now {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: gray;
+    color: white;
+    border: white 2px solid;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .shop-now:hover {
+    background-color: rgb(84, 84, 84);
+  }
+  
+  .products {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .product-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+  }
+  
+  .product img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .product h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .product p {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .product button {
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: solid lightgray 2px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .product button:hover {
+    background-color: black;
+  }
+  
