@@ -9,6 +9,8 @@ class Product(graphene.ObjectType):
     id = graphene.String()
     name = graphene.String()
     price = graphene.Float()
+    description = graphene.String()
+    image = graphene.String()
 
 class User(graphene.ObjectType):
     id = graphene.String()
@@ -25,7 +27,13 @@ class Query(graphene.ObjectType):
         # Récupérer tous les produits de MongoDB
         products = product_collection.find()
         return [
-            Product(id=product['_id'], name=product['name'], price=product['price'])
+            Product(
+                id=str(product['_id']),
+                name=product['name'],
+                price=product['price'],
+                description=product.get('description', ''),  
+                image=product.get('image', '') 
+            )
             for product in products
         ]
     

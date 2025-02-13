@@ -10,8 +10,8 @@ user_collection = db["users"]
 
 def insert_initial_data():
     products = [
-        {"name": "Produit A", "price": 20},
-        {"name": "Produit B", "price": 30}
+        {"name": "Produit A", "price": 20, "description": "Description du Produit A", "image": "http://example.com/image_a.jpg"},
+        {"name": "Produit B", "price": 30, "description": "Description du Produit B", "image": "http://example.com/image_b.jpg"}
     ]
     
     for product in products:
@@ -27,25 +27,6 @@ def insert_initial_data():
             print(f"Donnée insérée : {product['name']}")
         else:
             print(f"Le produit {product['name']} existe déjà avec l'ID {existing_product['_id']}.")
-
-    # Initialiser les utilisateurs
-    users = [
-        {"username": "admin", "password": "123456"}
-    ]
-    
-    for user in users:
-        username = user["username"].strip()
-
-        # Vérifier si un utilisateur avec le même nom existe déjà
-        existing_user = user_collection.find_one({"username": username})
-        
-        if not existing_user:
-            # Insérer l'utilisateur si ce n'est pas le cas
-            user_collection.insert_one(user)
-            print(f"Utilisateur inséré : {user['username']}")
-        else:
-            print(f"L'utilisateur {user['username']} existe déjà avec l'ID {existing_user['_id']}.")
-
 
 
 
