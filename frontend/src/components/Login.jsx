@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios"; 
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(""); 
 
     const handleSubmit = async (e) => {
@@ -22,11 +24,14 @@ const Login = () => {
             localStorage.setItem("token", response.data.access_token); 
             console.log("Login successful");
 
-            // Rediriger l'utilisateur ou effectuer une action après la connexion réussie
-        } catch (error) {
-            console.error("Login failed:", error);
-            setErrorMessage("Bad username or password"); 
+            // Vérifier si l'utilisateur est admin
+        if (username === "admin") {
+            navigate("/admin"); // Redirige vers Admin.jsx
         }
+    } catch (error) {
+        console.error("Login failed:", error);
+        setErrorMessage("Bad username or password"); 
+    }
     };
 
     return (

@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Footer from "./components/Footer";
 import Panier from "./components/Panier";
 import Affichage from "./components/Affichage";
+import Admin from "./components/Admin";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/panier" element={<Panier />} />
           <Route path="/affichage" element={<Affichage />} />
