@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+  }
+
+.affichage {
+    border : 2px solid black;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    min-height: 100vh;
+}
+
+.gauche {
+    padding: 20px;
+    width: 50%;
+    background: linear-gradient(90deg, rgb(166, 166, 166), white);
+    border-right: 2px solid black;
+}
+
+.droite {
+    border-left: 2px solid left;
+    padding: 10%;
+    text-align: center;
+    background: linear-gradient(-90deg,rgb(166, 166, 166), white);
+}
+
+h1 {
+    text-shadow: 2px 2px 2px darkgray;
+    font-weight: 700;
+}
+
+p {
+    padding-top: 20px;
+}
+
+.prix:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.shop-now {
+    margin: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 2px black solid ;
+    border-radius: 20px;
+    width: 200px;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+}
+
+.shop-now:hover {
+    background-color: #f0f0f0;
+    width: 205px;
+}
+
+.prix {
+    font-weight: 500;
+} 
