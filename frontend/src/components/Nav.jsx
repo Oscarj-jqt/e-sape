@@ -18,7 +18,7 @@ const Nav = () => {
             </nav>
             <div className="header-right">
                 <input type="text" placeholder="Rechercher" />
-                <button>Panier</button>
+                <button onClick={() => navigate("/Panier")}>Panier</button>
                 <button onClick={() => navigate("/Login")} aria-label="Se connecter">Connexion</button>
             </div>
         </header>
