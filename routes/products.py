@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from bson import ObjectId
 from pymongo import MongoClient
 
 # Connexion à MongoDB
@@ -46,40 +47,60 @@ def create_product():
 
     return jsonify({"msg": "Produit créé", "product": new_product}), 201
 
+from bson import ObjectId
+
 @product_bp.route('/admin/products', methods=['PUT'])
 @jwt_required()
 def modify_product():
+    print("🚀 Requête PUT reçue")  
     current_user = get_jwt_identity()
-    if current_user != 'admin':
+    
+    if current_user != 'admin': 
+        print("⛔ Accès refusé")
         return jsonify({"msg": "Accès refusé"}), 403
 
     data = request.get_json()
-    product_id = data.get("id")
+    print(f"📩 Données reçues: {data}")  
 
-    if not product_id:
-        return jsonify({"msg": "ID du produit requis"}), 400
 
-    # Vérifier si le produit existe
-    existing_product = collection.find_one({"_id": product_id})
-    if not existing_product:
+    try:
+        object_id = ObjectId(data.get("id"))
+        print(f"✅ ObjectId converti avec succès : {object_id}")
+    except Exception as e:
+        print(f"❌ Erreur conversion ObjectId: {e}")
+        return jsonify({"msg": "ID invalide"}), 400
+
+
+    product = collection.find_one({"_id": object_id})
+    print(f"🔍 Produit trouvé dans la base : {product}")
+
+    if not product:
         return jsonify({"msg": "Produit non trouvé"}), 404
 
-    update_data = {}
+
+    update_fields = {}
     if "name" in data:
-        update_data["name"] = data["name"]
+        update_fields["name"] = data["name"]
     if "price" in data:
-        update_data["price"] = data["price"]
+        update_fields["price"] = data["price"]
 
-    collection.update_one({"_id": product_id}, {"$set": update_data})
+    if update_fields:
+        collection.update_one({"_id": object_id}, {"$set": update_fields})
+        print("✅ Produit mis à jour avec succès")
+        return jsonify({"msg": "Produit modifié"}), 200
+    else:
+        return jsonify({"msg": "Aucune modification apportée"}), 400
 
-    return jsonify({"msg": "Produit modifié", "product": update_data}), 200
 
 
 @product_bp.route('/admin/products', methods=['DELETE'])
 @jwt_required()
 def delete_product():
+    print("🚀 Requête DELETE reçue")  
     current_user = get_jwt_identity()
-    if current_user != 'admin':
+    
+    if current_user != 'admin': 
+        print("⛔ Accès refusé")
         return jsonify({"msg": "Accès refusé"}), 403
 
     data = request.get_json()
@@ -88,14 +109,27 @@ def delete_product():
     if not product_id:
         return jsonify({"msg": "ID du produit requis"}), 400
 
+    # Convertir l'ID en ObjectId
+    try:
+        object_id = ObjectId(product_id)
+        print(f"✅ ObjectId converti avec succès : {object_id}")
+    except Exception as e:
+        print(f"❌ Erreur conversion ObjectId: {e}")
+        return jsonify({"msg": "ID invalide"}), 400
+
     # Vérifier si le produit existe
-    existing_product = collection.find_one({"_id": product_id})
+    existing_product = collection.find_one({"_id": object_id})
+    print(f"🔍 Produit trouvé dans la base : {existing_product}")
+
     if not existing_product:
         return jsonify({"msg": "Produit non trouvé"}), 404
 
-    collection.delete_one({"_id": product_id})
+    # Supprimer le produit
+    collection.delete_one({"_id": object_id})
+    print("✅ Produit supprimé avec succès")
 
     return jsonify({"msg": "Produit supprimé"}), 200
+
 
 
 # if __name__ == '__main__':
