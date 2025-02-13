@@ -46,4 +46,4 @@ const Panier = () => {
       );
 }
 
-export default Panier;
+export default Panier 

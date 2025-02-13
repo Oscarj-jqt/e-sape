@@ -34,9 +34,9 @@ const Home = () => {
             </div>
           </div>
         </section>
-
     </main>
     );
   }
+
 
 export default Home;
