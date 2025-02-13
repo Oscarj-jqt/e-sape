@@ -1,15 +1,22 @@
 from flask import Blueprint, request, jsonify, render_template
 from flask_jwt_extended import create_access_token
-import bcrypt
+from pymongo import MongoClient
 import logging
+import os
 
 auth_bp = Blueprint('auth', __name__)
+
+# Connexion à MongoDB (modifie l'URI selon ton environnement)
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
+db = client["e-sape_db"] 
+users_collection = db["users"]
 
 # Traçage des tentatives de connexion
 logging.basicConfig(level=logging.INFO)
 
 # Liste des utilisateurs fictifs avec mot de passe en clair
-users = [{"id": 1, "username": "admin", "password": "123456"}]
+# users = [{"id": 1, "username": "admin", "password": "123456"}]
 
 @auth_bp.route('/login')
 def login():
@@ -29,13 +36,15 @@ def check_login():
 
     logging.debug(f"Tentative de connexion avec username: {username}, password: {password}")
 
-    for user in users:
-        # Vérification du mot de passe en clair
-        if user["username"] == username and user["password"] == password:
-            access_token = create_access_token(identity=username)
-            return jsonify(access_token=access_token)
+    # Recherche de l'utilisateur dans MongoDB avec un mot de passe en clair
+    user = users_collection.find_one({"username": username, "password": password})
+
+    if user:
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token)
 
     return jsonify({"msg": "Bad username or password"}), 401
+
 
 # # Route de déconnexion (Blacklist du token)
 # @users_bp.route('/logout', methods=['POST'])

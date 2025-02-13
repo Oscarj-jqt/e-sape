@@ -37,12 +37,12 @@ const Login = () => {
                 <label htmlFor="username">Username</label>
                 <input
                     type="text"
-                    placeholder="Email"
+                    placeholder="Username"
                     id="username"
                     className="input"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    aria-label="Email"
+                    aria-label="Username"
                 />
 
                 <label htmlFor="password">Password</label>
