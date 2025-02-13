@@ -56,7 +56,7 @@ def modify_product():
     current_user = get_jwt_identity()
     
     if current_user != 'admin': 
-        print("⛔ Accès refusé")
+        print("Accès refusé")
         return jsonify({"msg": "Accès refusé"}), 403
 
     data = request.get_json()
@@ -67,12 +67,12 @@ def modify_product():
         object_id = ObjectId(data.get("id"))
         print(f"✅ ObjectId converti avec succès : {object_id}")
     except Exception as e:
-        print(f"❌ Erreur conversion ObjectId: {e}")
+        print(f"Erreur conversion ObjectId: {e}")
         return jsonify({"msg": "ID invalide"}), 400
 
 
     product = collection.find_one({"_id": object_id})
-    print(f"🔍 Produit trouvé dans la base : {product}")
+    print(f"Produit trouvé dans la base : {product}")
 
     if not product:
         return jsonify({"msg": "Produit non trouvé"}), 404
@@ -86,7 +86,7 @@ def modify_product():
 
     if update_fields:
         collection.update_one({"_id": object_id}, {"$set": update_fields})
-        print("✅ Produit mis à jour avec succès")
+        print("Produit mis à jour avec succès")
         return jsonify({"msg": "Produit modifié"}), 200
     else:
         return jsonify({"msg": "Aucune modification apportée"}), 400
@@ -96,7 +96,7 @@ def modify_product():
 @product_bp.route('/admin/products', methods=['DELETE'])
 @jwt_required()
 def delete_product():
-    print("🚀 Requête DELETE reçue")  
+    print("Requête DELETE reçue")  
     current_user = get_jwt_identity()
     
     if current_user != 'admin': 
@@ -119,7 +119,7 @@ def delete_product():
 
     # Vérifier si le produit existe
     existing_product = collection.find_one({"_id": object_id})
-    print(f"🔍 Produit trouvé dans la base : {existing_product}")
+    print(f"Produit trouvé dans la base : {existing_product}")
 
     if not existing_product:
         return jsonify({"msg": "Produit non trouvé"}), 404
