@@ -9,7 +9,7 @@ const Home = () => {
 
   // Fonction pour effectuer la requête GET GraphQL pour récupérer les produits
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/items")  // Assure-toi que l'URL est correcte
+    fetch("http://127.0.0.1:5000/products")  // Assure-toi que l'URL est correcte
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // Vérifie les données dans la console

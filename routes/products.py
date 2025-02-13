@@ -52,7 +52,7 @@ from bson import ObjectId
 @product_bp.route('/admin/products', methods=['PUT'])
 @jwt_required()
 def modify_product():
-    print("🚀 Requête PUT reçue")  
+    print("Requête PUT reçue")  
     current_user = get_jwt_identity()
     
     if current_user != 'admin': 
@@ -60,12 +60,12 @@ def modify_product():
         return jsonify({"msg": "Accès refusé"}), 403
 
     data = request.get_json()
-    print(f"📩 Données reçues: {data}")  
+    print(f"Données reçues: {data}")  
 
 
     try:
         object_id = ObjectId(data.get("id"))
-        print(f"✅ ObjectId converti avec succès : {object_id}")
+        print(f"ObjectId converti avec succès : {object_id}")
     except Exception as e:
         print(f"Erreur conversion ObjectId: {e}")
         return jsonify({"msg": "ID invalide"}), 400
