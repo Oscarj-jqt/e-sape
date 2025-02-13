@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import create_access_token
-import bcrypt
 import logging
 
 auth_bp = Blueprint('auth', __name__)
