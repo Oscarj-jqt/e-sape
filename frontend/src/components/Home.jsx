@@ -1,8 +1,8 @@
-import {React} from 'react';
+import React from 'react';
 import './Home.css';
 
 
-function Home() {
+const Home = () => {
     return (
       <main className="App">
 
@@ -18,7 +18,7 @@ function Home() {
               <img src="" alt="Produit 1" />
               <h3>Produit 1</h3>
               <p>Prix: 1.800€</p>
-              <button>Afficher le produit</button>
+              <button onclick="window.location.href = './Home.jsx" alt="produits">Afficher le produit</button>    
             </div>
             <div className="product">
               <img src="" alt="Produit 2" />
