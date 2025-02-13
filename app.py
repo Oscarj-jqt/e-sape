@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import JWTManager
 from routes.auth import auth_bp 
 from routes.users import users_bp
+from routes.products import product_bp
 from datetime import timedelta
 
 from flask import Flask
@@ -29,6 +30,7 @@ jwt = JWTManager(app)
 
 # Enregistrement des Blueprints
 app.register_blueprint(auth_bp) 
+app.register_blueprint(product_bp)  
 app.register_blueprint(users_bp)  
 
 @app.route('/')
@@ -37,6 +39,6 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(port=5000, debug=True)
 
 
