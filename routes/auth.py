@@ -36,3 +36,11 @@ def check_login():
             return jsonify(access_token=access_token)
 
     return jsonify({"msg": "Bad username or password"}), 401
+
+# # Route de déconnexion (Blacklist du token)
+# @users_bp.route('/logout', methods=['POST'])
+# @jwt_required()
+# def logout():
+#     current_user = get_jwt_identity()
+#     blacklisted_tokens.add(current_user)  # Ajoute l'utilisateur à la liste des tokens invalidés
+#     return jsonify({"msg": "Déconnexion réussie"}), 200
