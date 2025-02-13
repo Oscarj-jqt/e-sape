@@ -1,79 +1,108 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Admin = () => {
     const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: "", price: "" });
-    const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
+    const [editId, setEditId] = useState(null);
+    const [message, setMessage] = useState("");
 
-    // Vérification du token (Accès restreint)
+    // Récupérer le token
+    const token = localStorage.getItem("token");
+
+    // Charger les produits
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            console.log("Accès refusé, redirection vers /");
-            navigate("/");
-        } else {
-            fetchProducts();
-        }
-    }, [navigate]);
+        fetchProducts();
+    }, []);
 
-    // Récupération des produits depuis l'API Flask
     const fetchProducts = async () => {
         try {
             const response = await axios.get("http://localhost:5000/products");
             setProducts(response.data.products);
         } catch (error) {
-            console.error("Erreur lors de la récupération des produits :", error);
+            console.error("Erreur lors du chargement des produits", error);
         }
     };
 
-    // Ajout d’un nouveau produit
-    const handleAddProduct = async () => {
-        if (!newProduct.name || !newProduct.price) return;
+    // Ajouter un produit
+    const addProduct = async () => {
         try {
-            await axios.post("http://localhost:5000/products", newProduct);
-            setNewProduct({ name: "", price: "" });
-            fetchProducts(); // Rafraîchir la liste
+            const response = await axios.post(
+                "http://localhost:5000/admin/products",
+                { name, price, description, image },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setMessage(response.data.msg);
+            fetchProducts();
         } catch (error) {
-            console.error("Erreur lors de l'ajout du produit :", error);
+            setMessage(error.response?.data?.msg || "Erreur lors de l'ajout");
         }
     };
 
-    // Suppression d’un produit
-    const handleDeleteProduct = async (id) => {
+    // Modifier un produit
+    const updateProduct = async () => {
         try {
-            await axios.delete(`http://localhost:5000/products/${id}`);
-            fetchProducts(); // Rafraîchir la liste
+            const response = await axios.put(
+                "http://localhost:5000/admin/products",
+                { id: editId, name, price, description, image },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setMessage(response.data.msg);
+            fetchProducts();
+            setEditId(null); // Réinitialiser après modification
         } catch (error) {
-            console.error("Erreur lors de la suppression du produit :", error);
+            setMessage(error.response?.data?.msg || "Erreur lors de la modification");
+        }
+    };
+
+    // Supprimer un produit
+    const deleteProduct = async (id) => {
+        try {
+            const response = await axios.delete(
+                "http://localhost:5000/admin/products",
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                    data: { id }, // On met l'id dans le body
+                }
+            );
+            setMessage(response.data.msg);
+            fetchProducts();
+        } catch (error) {
+            setMessage(error.response?.data?.msg || "Erreur lors de la suppression");
         }
     };
 
     return (
         <div>
-            <h2>Admin Panel</h2>
-            <h3>Ajouter un produit</h3>
-            <input
-                type="text"
-                placeholder="Nom du produit"
-                value={newProduct.name}
-                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-            />
-            <input
-                type="number"
-                placeholder="Prix"
-                value={newProduct.price}
-                onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-            />
-            <button onClick={handleAddProduct}>Ajouter</button>
+            <h1>Admin - Gestion des produits</h1>
 
-            <h3>Liste des produits</h3>
+            {message && <p>{message}</p>}
+
+            <div>
+                <h2>{editId ? "Modifier le produit" : "Ajouter un produit"}</h2>
+                <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="number" placeholder="Prix" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input type="text" placeholder="Image URL" value={image} onChange={(e) => setImage(e.target.value)} />
+                <button onClick={editId ? updateProduct : addProduct}>{editId ? "Modifier" : "Ajouter"}</button>
+            </div>
+
+            <h2>Liste des produits</h2>
             <ul>
                 {products.map((product) => (
                     <li key={product._id}>
                         {product.name} - {product.price}€
-                        <button onClick={() => handleDeleteProduct(product._id)}>Supprimer</button>
+                        <button onClick={() => {
+                            setEditId(product._id);
+                            setName(product.name);
+                            setPrice(product.price);
+                            setDescription(product.description);
+                            setImage(product.image);
+                        }}>Modifier</button>
+                        <button onClick={() => deleteProduct(product._id)}>Supprimer</button>
                     </li>
                 ))}
             </ul>
