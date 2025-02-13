@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
 import Panier from "./components/Panier";
+import Affichage from "./components/Affichage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/panier" element={<Panier />} />
+          <Route path="/affichage" element={<Affichage />} />
         </Routes>
       </main>
       <Footer />

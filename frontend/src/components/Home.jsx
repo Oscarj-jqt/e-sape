@@ -1,8 +1,10 @@
 import React from 'react';
 import './Home.css';
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+    const navigate = useNavigate();
     return (
       <main className="App">
 
@@ -18,7 +20,7 @@ const Home = () => {
               <img src="" alt="Produit 1" />
               <h3>Produit 1</h3>
               <p>Prix: 1.800€</p>
-              <button>Afficher le produit</button>
+              <button onClick={() => navigate("/Affichage")}>Afficher le produit</button>
             </div>
             <div className="product">
               <img src="" alt="Produit 2" />
