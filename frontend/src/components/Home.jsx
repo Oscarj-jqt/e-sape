@@ -1,21 +1,19 @@
-import {React, useEffect, useState} from 'react';
-import axios from "axios";
-import './Home.css';
+import React, { useEffect, useState } from "react";
+import "./Home.css";
+import axios from "axios"; // Assure-toi d'avoir installé axios avec npm install axios
 
 const Home = () => {
-  
-  // État pour stocker les produits récupérés
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // État pour stocker les produits
 
-  // Fonction pour effectuer la requête GET GraphQL pour récupérer les produits
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/products")  // Assure-toi que l'URL est correcte
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Vérifie les données dans la console
-        setProducts(data); // Mettre à jour l'état avec les données
+    axios
+      .get("http://localhost:5000/products") // Appel à l’API Flask
+      .then((response) => {
+        setProducts(response.data.products); // Met à jour l’état avec les produits
       })
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des produits:", error);
+      });
   }, []);
 
   return (
@@ -30,21 +28,20 @@ const Home = () => {
         <div className="product-list">
           {products.length > 0 ? (
             products.map((product) => (
-              <div className="product" key={product.id}>
-                {/* Afficher l'image, utiliser une image par défaut si nécessaire */}
-                <img src={`https://via.placeholder.com/150?text=${product.name}`} alt={product.name} />
+              <div className="product" key={product._id}>
+                <img src="" alt={product.name} />
                 <h3>{product.name}</h3>
                 <p>Prix: {product.price}€</p>
                 <button>Afficher le produit</button>
               </div>
             ))
           ) : (
-            <p>Aucun produit disponible.</p>
+            <p>Chargement des produits...</p>
           )}
         </div>
       </section>
     </main>
   );
-}
+};
 
 export default Home;
