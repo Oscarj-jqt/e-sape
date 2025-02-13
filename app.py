@@ -6,11 +6,14 @@ from routes.users import users_bp
 from datetime import timedelta
 
 from flask import Flask
+from flask_cors import CORS
 from flask_graphql import GraphQLView
 from database.graph import schema
 
 
 app = Flask(__name__)
+# liaison back(flask) et front(react)
+CORS(app)
 
 # API GraphQL pour tout gérer en 1 route au lieu de REST
 app.add_url_rule("/graphql", view_func=GraphQLView.as_view(

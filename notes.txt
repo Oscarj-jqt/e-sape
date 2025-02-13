@@ -6,6 +6,10 @@ Flask / rest
 React PWA permet de transformer en tout type d’application
 Mongodb ou sql
 
+Lancer le serveur : 
+.venv\Scripts\activate
+flask --app app run --debug
+
 Fonctionnalités :
 
 Enregistrement nouveau user
@@ -30,4 +34,6 @@ activer environnement virtuel
 -avec l'Auth (get : 1 interface ou 2)
 - comparer avec REST
 
+
+3- Ajout d'une base de données
 
