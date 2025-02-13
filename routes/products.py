@@ -100,7 +100,7 @@ def delete_product():
     current_user = get_jwt_identity()
     
     if current_user != 'admin': 
-        print("⛔ Accès refusé")
+        print(" Accès refusé")
         return jsonify({"msg": "Accès refusé"}), 403
 
     data = request.get_json()
@@ -112,9 +112,9 @@ def delete_product():
     # Convertir l'ID en ObjectId
     try:
         object_id = ObjectId(product_id)
-        print(f"✅ ObjectId converti avec succès : {object_id}")
+        print(f" ObjectId converti avec succès : {object_id}")
     except Exception as e:
-        print(f"❌ Erreur conversion ObjectId: {e}")
+        print(f" Erreur conversion ObjectId: {e}")
         return jsonify({"msg": "ID invalide"}), 400
 
     # Vérifier si le produit existe
@@ -126,7 +126,7 @@ def delete_product():
 
     # Supprimer le produit
     collection.delete_one({"_id": object_id})
-    print("✅ Produit supprimé avec succès")
+    print(" Produit supprimé avec succès")
 
     return jsonify({"msg": "Produit supprimé"}), 200
 
