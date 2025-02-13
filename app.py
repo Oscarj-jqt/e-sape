@@ -5,7 +5,7 @@ from routes.auth import auth_bp
 from routes.users import users_bp
 from routes.products import product_bp
 from datetime import timedelta
-
+from flask_pymongo import PyMongo
 from flask import Flask
 from flask_cors import CORS
 from flask_graphql import GraphQLView
@@ -22,6 +22,10 @@ app.add_url_rule("/graphql", view_func=GraphQLView.as_view(
    schema=schema,
    graphiql=True 
 ))
+
+# Configuration MongoDB
+app.config["MONGO_URI"] = "mongodb://localhost:27017/e-sape_db"
+mongo = PyMongo(app)
 
 # Configuration de la clé JWT
 app.config['JWT_SECRET_KEY'] = 'web2'
