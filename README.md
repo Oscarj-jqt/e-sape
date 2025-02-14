@@ -11,7 +11,7 @@
 
 ## Contexte
 
-E-sape est une application de boutique en ligne développée en utilisant Flask pour le backend et React pour le frontend. Le projet permet aux utilisateurs de consulter des produits, de les afficher en détails, et de les ajouter à leur panier. Il inclut une gestion de produits via une API REST et GraphQL, ainsi qu'une authentification basée sur JWT.
+E-sape est une application de boutique en ligne développée en utilisant Flask pour le backend, React pour le frontend ainsi que MongoDB pour la base de données. Le projet permet aux utilisateurs de consulter des produits, de les afficher en détails, et de les ajouter à leur panier. Il inclut une gestion de produits via une API REST et authentification basée sur JWT.
 
 ![demo page](/e-sape_cap.png)
 
