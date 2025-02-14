@@ -46,5 +46,12 @@ python3 app.py
 
 ```
 
+## Participants
 
+ - Oscar JACQUET    - Développeur Full Stack
+ - Issa Abdoulaye  - Développeur Front End
+ - Aryles Ben Chabane - Développeur Full Stack
+ - Alexis HU        - Développeur Front End
+ - Hugo Da Rocha    - Développeur Back End
+ 
 
