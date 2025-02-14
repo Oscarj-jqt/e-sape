@@ -21,6 +21,18 @@ def get_products():
 
     return jsonify({"products": products}), 200
 
+# Page détail d'un produit
+@product_bp.route('/products/<string:product_id>', methods=['GET'])
+def get_product_by_id(product_id):
+    product = collection.find_one({"_id": ObjectId(product_id)})
+
+    if product:
+        product["_id"] = str(product["_id"])  # Convertir l'ObjectId en string pour éviter les erreurs JSON
+        return jsonify({"product": product}), 200
+    else:
+        return jsonify({"error": "Produit non trouvé"}), 404
+
+
 @product_bp.route('/admin/products', methods=['POST'])
 @jwt_required()
 def create_product():

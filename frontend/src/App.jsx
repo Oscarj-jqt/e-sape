@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/admin" element={<Admin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/panier" element={<Panier />} />
-          <Route path="/affichage" element={<Affichage />} />
+          <Route path="/affichage/:productId" element={<Affichage />} />
         </Routes>
       </main>
       <Footer />

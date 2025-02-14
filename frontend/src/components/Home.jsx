@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import axios from "axios"; // Assure-toi d'avoir installé axios avec npm install axios
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [products, setProducts] = useState([]); // État pour stocker les produits
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -29,10 +31,12 @@ const Home = () => {
           {products.length > 0 ? (
             products.map((product) => (
               <div className="product" key={product._id}>
-                <img src="" alt={product.name} />
                 <h3>{product.name}</h3>
+                <img src={product.image} alt={product.name} />
                 <p>Prix: {product.price}€</p>
-                <button>Afficher le produit</button>
+                <button onClick={() => navigate(`/affichage/${product._id}`)}>
+                  Afficher le produit
+                </button>
               </div>
             ))
           ) : (

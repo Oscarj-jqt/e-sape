@@ -1,22 +1,46 @@
 import React from "react";
 import "./Affichage.css"
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const Affichage = () => {
+
+    const [products, setProducts] = useState([]); // État pour stocker les produits
+    const { productId } = useParams();
+
+    useEffect(() => {
+        axios
+          .get(`http://localhost:5000/products/${productId}`) // Appel à l’API Flask
+          .then((response) => {
+            console.log("Données reçues :", response.data);
+            setProducts(response.data.products); // Met à jour l’état avec les produits
+          })
+          .catch((error) => {
+            console.error("Erreur lors de la récupération des produits:", error);
+          });
+      }, [productId]);
+
+      if (!products) {
+        return <p>Chargement ...</p>;
+      }
+
     return (
         <main className="affichage">
 
-            <section class="gauche">
-            <img src ="louis-vuitton-blouson-varsity-brode--HPL66ECAW622_PM2_Front view.jpg.webp" alt="Veste" className="photo" width="500px"></img>
+            <section className="gauche">
+            <img src ={products.image} alt="Veste" className="photo" width="500px"></img>
             </section>
 
-            <section class="droite">
-                <h1>Veste Louis Vuitton</h1>
+            <section className="droite">
+                <h1>{products.name}</h1>
 
-                <p>Pièce indispensable de la garde-robe, cette veste trucker classique témoigne du savoir-faire Louis Vuitton. Elle est fabriquée en denim japonais de première qualité, délavé à la pierre, avec des surpiqûres couleur tabac, une broderie LV sur la poche de poitrine, un patch LV en nubuck au dos et des boutons façon perles. Ce modèle s'associe aisément aux tenues de tous les jours.</p>
+                <p>{products.description}</p>
 
-                <p class="prix">1.200€</p>
+                <p className="prix">{products.price}€</p>
 
-                <button class="shop-now">Ajoutez au panier</button> 
+                <button className="shop-now">Ajoutez au panier</button> 
             </section>
         </main>
     )
