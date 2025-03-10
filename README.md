@@ -32,9 +32,7 @@ source venv\Scripts\activate # sur Windows
 deactivate
 ```
 
-Installation des dépendances puis démarrage du serveur
-
-# Depuis la racine
+# Installation des dépendances puis démarrage du serveur
 
 ```bash
 pip install -r requirements.txt
