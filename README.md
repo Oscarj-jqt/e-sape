@@ -32,16 +32,12 @@ source venv\Scripts\activate # sur Windows
 deactivate
 ```
 
-Installation des dépendances
+Installation des dépendances puis démarrage du serveur
 
-# Depuis la racine
-
-pip install -r requirements.txt
-
-Lancer le projet 
 # Depuis la racine
 
 ```bash
+pip install -r requirements.txt
 python3 app.py
 
 ```
@@ -53,5 +49,3 @@ python3 app.py
  - Aryles Ben Chabane - Développeur Full Stack
  - Alexis HU        - Développeur Front End
  - Hugo Da Rocha    - Développeur Back End
- 
-
