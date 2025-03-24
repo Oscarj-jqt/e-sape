@@ -17,20 +17,6 @@ E-sape est une application de boutique en ligne développée en utilisant Flask 
 
 ## Installation
 
-### Création d'un environnement virtuel
-
-```bash
-python3 -m venv venv
-
-# Depuis la racine
-
-source venv/bin/activate # sur macOS/Linux
-source venv\Scripts\activate # sur Windows
-
-# Pour désactiver votre environnement virtuel
-
-deactivate
-```
 
 # Installation des dépendances puis démarrage du serveur
 
