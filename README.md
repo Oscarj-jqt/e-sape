@@ -15,7 +15,6 @@ E-sape est une application de boutique en ligne développée en utilisant Flask 
 
 ![demo page](/e-sape_cap.png)
 
-## Installation
 
 
 # Installation des dépendances puis démarrage du serveur
